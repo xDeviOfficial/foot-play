@@ -1,46 +1,58 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Game.gd" type="Script" id=1]
-[ext_resource path="res://PlayerBody.gd" type="Script" id=2]
-[ext_resource path="res://icon.png" type="Texture" id=3]
-[ext_resource path="res://Ball.gd" type="Script" id=4]
-[ext_resource path="res://Soccerball.svg" type="Texture" id=5]
-[ext_resource path="res://GoalObject.gd" type="Script" id=6]
-[ext_resource path="res://Goal.png" type="Texture" id=7]
+[ext_resource path="res://sky.png" type="Texture" id=2]
+[ext_resource path="res://playArea.png" type="Texture" id=3]
+[ext_resource path="res://PlayerBody.gd" type="Script" id=4]
+[ext_resource path="res://icon.png" type="Texture" id=5]
+[ext_resource path="res://Ball.gd" type="Script" id=6]
+[ext_resource path="res://Soccerball.svg" type="Texture" id=7]
+[ext_resource path="res://GoalObject.gd" type="Script" id=8]
+[ext_resource path="res://Goal.png" type="Texture" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 30, 30 )
 
-[sub_resource type="PhysicsMaterial" id=8]
+[sub_resource type="PhysicsMaterial" id=2]
 bounce = 0.4
 
-[sub_resource type="CircleShape2D" id=2]
+[sub_resource type="CircleShape2D" id=3]
 radius = 26.0
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 614.039, 10 )
 
-[sub_resource type="RectangleShape2D" id=4]
+[sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 10, 399.617 )
 
-[sub_resource type="RectangleShape2D" id=5]
+[sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 820, 10 )
 
-[sub_resource type="RectangleShape2D" id=6]
+[sub_resource type="RectangleShape2D" id=7]
 extents = Vector2( 10, 395.632 )
 
-[sub_resource type="RectangleShape2D" id=7]
-extents = Vector2( 13.2819, 182.712 )
+[sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 13.2819, 88.4422 )
 
 [node name="PlayerScene" type="Node2D"]
 position = Vector2( 626.075, 409.97 )
 script = ExtResource( 1 )
 
+[node name="sky" type="Sprite" parent="."]
+position = Vector2( -93.9982, -300.568 )
+scale = Vector2( 1.86694, 1.20864 )
+texture = ExtResource( 2 )
+
+[node name="playArea" type="Sprite" parent="."]
+position = Vector2( -96.9414, -15.6308 )
+scale = Vector2( 1.86333, 2.00452 )
+texture = ExtResource( 3 )
+
 [node name="PlayerBody" type="KinematicBody2D" parent="."]
-script = ExtResource( 2 )
+script = ExtResource( 4 )
 
 [node name="Sprite" type="Sprite" parent="PlayerBody"]
-texture = ExtResource( 3 )
+texture = ExtResource( 5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerBody"]
 position = Vector2( -1, 0 )
@@ -48,46 +60,46 @@ shape = SubResource( 1 )
 
 [node name="Ball" type="RigidBody2D" parent="."]
 mass = 0.0867347
-physics_material_override = SubResource( 8 )
+physics_material_override = SubResource( 2 )
 gravity_scale = 0.5
-script = ExtResource( 4 )
+script = ExtResource( 6 )
 
 [node name="Sprite" type="Sprite" parent="Ball"]
 position = Vector2( -206.5, 43.5 )
 scale = Vector2( 0.11, 0.11 )
-texture = ExtResource( 5 )
+texture = ExtResource( 7 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ball"]
 position = Vector2( -205.005, 42 )
-shape = SubResource( 2 )
+shape = SubResource( 3 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2( -120.393, 178.393 )
-shape = SubResource( 3 )
+position = Vector2( -116.71, 194.354 )
+shape = SubResource( 4 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2( 406.138, -146.262 )
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2( -180.092, -421.148 )
-shape = SubResource( 5 )
+shape = SubResource( 6 )
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2( -638.038, -73.6336 )
-shape = SubResource( 6 )
-
-[node name="GoalObject" type="Area2D" parent="."]
-script = ExtResource( 6 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GoalObject"]
-position = Vector2( -632.024, -12.9348 )
 shape = SubResource( 7 )
 
+[node name="GoalObject" type="Area2D" parent="."]
+script = ExtResource( 8 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GoalObject"]
+position = Vector2( -623.43, -11.7071 )
+shape = SubResource( 8 )
+
 [node name="Sprite" type="Sprite" parent="GoalObject"]
-position = Vector2( -612.646, -11.4423 )
-scale = Vector2( 5.17892, 11.1053 )
-texture = ExtResource( 7 )
+position = Vector2( -617.557, -16.3533 )
+scale = Vector2( 5.17892, 4.73641 )
+texture = ExtResource( 9 )
 
