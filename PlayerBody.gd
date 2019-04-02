@@ -4,7 +4,9 @@ var speed = 700
 var velocity = Vector2()
 
 func get_input():
-    velocity = Vector2()
+    velocity = Vector2();
+		
+		
     
     var screen_size = get_viewport().get_visible_rect().size;
     var x = global_position.x;
@@ -27,7 +29,17 @@ func get_input():
             return;
         velocity.y -= 1
     velocity = velocity.normalized() * speed
+    
+		
+		
 
 func _physics_process(delta):
-    get_input()
+    var collisionInfo = move_and_collide(velocity.normalized() * speed * delta);
+    if collisionInfo:
+	    collisionInfo.collider.queue_free();
+    #print(collisionInfo);
+    get_input();
     move_and_collide(velocity * delta)
+	
+	
+	

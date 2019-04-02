@@ -15,3 +15,7 @@ func _process(delta):
     
 func _on_Area2D_body_enter(body):
     print(str('Body entered: ', body.get_name()))
+
+
+func _on_Ball_body_entered(body):
+	print("Goal!!");

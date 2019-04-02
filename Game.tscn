@@ -10,15 +10,6 @@
 [ext_resource path="res://GoalObject.gd" type="Script" id=8]
 [ext_resource path="res://Goal.png" type="Texture" id=9]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 30, 30 )
-
-[sub_resource type="PhysicsMaterial" id=2]
-bounce = 0.4
-
-[sub_resource type="CircleShape2D" id=3]
-radius = 26.0
-
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 614.039, 10 )
 
@@ -30,6 +21,15 @@ extents = Vector2( 820, 10 )
 
 [sub_resource type="RectangleShape2D" id=7]
 extents = Vector2( 10, 395.632 )
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 30, 30 )
+
+[sub_resource type="PhysicsMaterial" id=2]
+bounce = 0.4
+
+[sub_resource type="CircleShape2D" id=3]
+radius = 26.6693
 
 [sub_resource type="RectangleShape2D" id=8]
 extents = Vector2( 13.2819, 88.4422 )
@@ -44,36 +44,22 @@ scale = Vector2( 1.86694, 1.20864 )
 texture = ExtResource( 2 )
 
 [node name="playArea" type="Sprite" parent="."]
+editor/display_folded = true
 position = Vector2( -96.9414, -15.6308 )
 scale = Vector2( 1.86333, 2.00452 )
 texture = ExtResource( 3 )
 
-[node name="PlayerBody" type="KinematicBody2D" parent="."]
-script = ExtResource( 4 )
-
-[node name="Sprite" type="Sprite" parent="PlayerBody"]
-texture = ExtResource( 5 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerBody"]
-position = Vector2( -1, 0 )
-shape = SubResource( 1 )
-
-[node name="Ball" type="RigidBody2D" parent="."]
-mass = 0.0867347
-physics_material_override = SubResource( 2 )
-gravity_scale = 0.5
-script = ExtResource( 6 )
-
-[node name="Sprite" type="Sprite" parent="Ball"]
-position = Vector2( -206.5, 43.5 )
-scale = Vector2( 0.11, 0.11 )
-texture = ExtResource( 7 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball"]
-position = Vector2( -205.005, 42 )
-shape = SubResource( 3 )
+[node name="ScoreText" type="Label" parent="playArea"]
+margin_left = -68.0
+margin_top = -175.0
+margin_right = 52.0
+margin_bottom = -123.0
+text = "Score "
+align = 1
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
+editor/display_folded = true
+position = Vector2( 0, -3.05176e-005 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2( -116.71, 194.354 )
@@ -88,10 +74,38 @@ position = Vector2( -180.092, -421.148 )
 shape = SubResource( 6 )
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2( -638.038, -73.6336 )
+position = Vector2( -638.038, -74.2323 )
 shape = SubResource( 7 )
 
+[node name="PlayerBody" type="KinematicBody2D" parent="."]
+editor/display_folded = true
+script = ExtResource( 4 )
+
+[node name="Sprite" type="Sprite" parent="PlayerBody"]
+texture = ExtResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerBody"]
+position = Vector2( -1, 0 )
+shape = SubResource( 1 )
+
+[node name="Ball" type="RigidBody2D" parent="."]
+editor/display_folded = true
+mass = 0.0867347
+physics_material_override = SubResource( 2 )
+gravity_scale = 0.5
+script = ExtResource( 6 )
+
+[node name="Sprite" type="Sprite" parent="Ball"]
+position = Vector2( -206.5, 43.5 )
+scale = Vector2( 0.11, 0.11 )
+texture = ExtResource( 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball"]
+position = Vector2( -206.722, 43.7171 )
+shape = SubResource( 3 )
+
 [node name="GoalObject" type="Area2D" parent="."]
+editor/display_folded = true
 script = ExtResource( 8 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GoalObject"]
@@ -103,3 +117,4 @@ position = Vector2( -617.557, -16.3533 )
 scale = Vector2( 5.17892, 4.73641 )
 texture = ExtResource( 9 )
 
+[connection signal="body_entered" from="Ball" to="GoalObject" method="_on_Ball_body_entered"]
