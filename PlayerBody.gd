@@ -1,10 +1,27 @@
 extends KinematicBody2D
-
+var frame2 = preload("res://sprite_1.png");
+var frame1 = preload("res://sprite_0.png");
 var speed = 700
 var velocity = Vector2()
+onready var texture = get_node("player");
+var frameNum = true;
 
 func get_input():
     velocity = Vector2();
+    #frameNum = frameNum + 1;
+	
+    if frameNum == true:
+        print("true");
+        texture.set_texture(frame2);
+        frameNum = false;
+    else:
+        print("false");
+        texture.set_texture(frame1);
+        frameNum = true;
+	
+	
+	
+
 		
 		
     

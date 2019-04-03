@@ -4,32 +4,32 @@
 [ext_resource path="res://sky.png" type="Texture" id=2]
 [ext_resource path="res://playArea.png" type="Texture" id=3]
 [ext_resource path="res://PlayerBody.gd" type="Script" id=4]
-[ext_resource path="res://icon.png" type="Texture" id=5]
+[ext_resource path="res://sprite_0.png" type="Texture" id=5]
 [ext_resource path="res://Ball.gd" type="Script" id=6]
 [ext_resource path="res://Soccerball.svg" type="Texture" id=7]
 [ext_resource path="res://GoalObject.gd" type="Script" id=8]
 [ext_resource path="res://Goal.png" type="Texture" id=9]
 
-[sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 614.039, 10 )
-
 [sub_resource type="RectangleShape2D" id=5]
-extents = Vector2( 10, 399.617 )
-
-[sub_resource type="RectangleShape2D" id=6]
-extents = Vector2( 820, 10 )
-
-[sub_resource type="RectangleShape2D" id=7]
-extents = Vector2( 10, 395.632 )
-
-[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 30, 30 )
 
-[sub_resource type="PhysicsMaterial" id=2]
+[sub_resource type="PhysicsMaterial" id=6]
 bounce = 0.4
 
-[sub_resource type="CircleShape2D" id=3]
+[sub_resource type="CircleShape2D" id=7]
 radius = 26.6693
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 614.039, 10 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 10, 399.617 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 820, 10 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 10, 395.632 )
 
 [sub_resource type="RectangleShape2D" id=8]
 extents = Vector2( 13.2819, 88.4422 )
@@ -57,41 +57,21 @@ margin_bottom = -123.0
 text = "Score "
 align = 1
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-editor/display_folded = true
-position = Vector2( 0, -3.05176e-005 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2( -116.71, 194.354 )
-shape = SubResource( 4 )
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2( 406.138, -146.262 )
-shape = SubResource( 5 )
-
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2( -180.092, -421.148 )
-shape = SubResource( 6 )
-
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2( -638.038, -74.2323 )
-shape = SubResource( 7 )
-
 [node name="PlayerBody" type="KinematicBody2D" parent="."]
-editor/display_folded = true
 script = ExtResource( 4 )
 
-[node name="Sprite" type="Sprite" parent="PlayerBody"]
+[node name="player" type="Sprite" parent="PlayerBody"]
+position = Vector2( 32.4078, -28.6395 )
+scale = Vector2( 2.29631, 2.14558 )
 texture = ExtResource( 5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerBody"]
-position = Vector2( -1, 0 )
-shape = SubResource( 1 )
+position = Vector2( 34, -19 )
+shape = SubResource( 5 )
 
 [node name="Ball" type="RigidBody2D" parent="."]
-editor/display_folded = true
 mass = 0.0867347
-physics_material_override = SubResource( 2 )
+physics_material_override = SubResource( 6 )
 gravity_scale = 0.5
 script = ExtResource( 6 )
 
@@ -102,10 +82,31 @@ texture = ExtResource( 7 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ball"]
 position = Vector2( -206.722, 43.7171 )
+shape = SubResource( 7 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+editor/display_folded = true
+position = Vector2( 0, -3.05176e-005 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( -116.71, 194.354 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 406.138, -146.262 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( -180.092, -421.148 )
 shape = SubResource( 3 )
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( -638.038, -74.2323 )
+shape = SubResource( 4 )
 
 [node name="GoalObject" type="Area2D" parent="."]
 editor/display_folded = true
+position = Vector2( 0, 9.04404 )
 script = ExtResource( 8 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GoalObject"]
